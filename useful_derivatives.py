@@ -13,10 +13,39 @@ class Derivatives(Scene):
     
     def construct(self):
         
-        
+        self.create_functions()
+        highest_x_value=0
+        lowest_x_value=0
+        for ze in zeros_x_coords:
+            for z in ze:
+                if z>highest_x_value:
+                    highest_x_value=z
+                if z<lowest_x_value:
+                    lowest_x_value=z
+        highest_y_value=0
+        lowest_y_value=0
+        for ex in extreme_points:
+            if ex[1]>highest_y_value:
+                highest_y_value=ex[1]
+            if ex[1]<lowest_y_value:
+                lowest_y_value=ex[1]
+        for tu in turning_points:
+            if tu[1]>highest_y_value:
+                highest_y_value=tu[1]
+            if tu[1]<lowest_y_value:
+                lowest_y_value=tu[1]
+        print(lowest_x_value)
+        x_val=round(3*max(highest_x_value,abs(lowest_x_value)))
+        y_val=round(4*max(highest_y_value,abs(lowest_y_value)))
+        if x_val==0:
+            x_val=5
+        if y_val==0:
+            y_val=5
+        print(x_val)
+        print(y_val)
         ax=Axes(
-            (-10,10,2),
-            (-100,100,20),
+            (-x_val,x_val,round(x_val/4)),
+            (-y_val,y_val,round(y_val/4)),
             13,
             7,
             
@@ -34,7 +63,7 @@ class Derivatives(Scene):
                 )
 
         #Add functions
-        self.create_functions()
+        
         self.add(ax)
         curves=[]
         colors=color_gradient([BLUE,GREEN,RED],3)
@@ -46,7 +75,7 @@ class Derivatives(Scene):
         texts=[]
         texts.append(tex)
         
-        #self.add(tex)
+        self.add(tex)
         for i in range(0,3):
             coefficients=final_coefficients[i]
             powers=final_powers[i]
@@ -89,15 +118,8 @@ class Derivatives(Scene):
             #print(self.zero_points(coefficients,powers))
             
             solutions=zeros_x_coords[i]
-            self.add(cur,tec)
-            #self.play(
-                #Create(cur),
-                #Transform(
-                 #       texts[i],
-                 #       tec
-                 #   ),
-               # run_time=3
-           # )
+            #self.add(cur,tec)
+            
             if solutions:
                 for s in solutions:
                     so=s.evalf(3)
@@ -108,7 +130,19 @@ class Derivatives(Scene):
                     *[Dot(ax.c2p(sol, 0), color=colors[i]) for sol in solutions]
                 )
                 null_points.append(points)
-                self.add(points)
+                #self.add(points)
+            self.play(
+                Create(cur),
+                Transform(
+                        texts[i],
+                        tec
+                    ),
+                
+                run_time=3
+            )
+            self.play(
+                Create(points),
+            )
             
             
         #Extreme Points
