@@ -1,0 +1,12 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/Users/juliu/Desktop/media/videos/manim_test1/1080p60/partial_movie_files/Ex/819936691_3230474506_223132457.mp4'
+file 'file:C:/Users/juliu/Desktop/media/videos/manim_test1/1080p60/partial_movie_files/Ex/2213807979_1310349327_2038353829.mp4'
+file 'file:C:/Users/juliu/Desktop/media/videos/manim_test1/1080p60/partial_movie_files/Ex/2213807979_2992839796_2038353829.mp4'
+file 'file:C:/Users/juliu/Desktop/media/videos/manim_test1/1080p60/partial_movie_files/Ex/2213807979_2593595287_2038353829.mp4'
+file 'file:C:/Users/juliu/Desktop/media/videos/manim_test1/1080p60/partial_movie_files/Ex/2213807979_3612417066_2038353829.mp4'
+file 'file:C:/Users/juliu/Desktop/media/videos/manim_test1/1080p60/partial_movie_files/Ex/2213807979_3427103956_2038353829.mp4'
+file 'file:C:/Users/juliu/Desktop/media/videos/manim_test1/1080p60/partial_movie_files/Ex/2213807979_4072867231_2038353829.mp4'
+file 'file:C:/Users/juliu/Desktop/media/videos/manim_test1/1080p60/partial_movie_files/Ex/2213807979_1702861706_2038353829.mp4'
+file 'file:C:/Users/juliu/Desktop/media/videos/manim_test1/1080p60/partial_movie_files/Ex/2213807979_3630796975_2038353829.mp4'
+file 'file:C:/Users/juliu/Desktop/media/videos/manim_test1/1080p60/partial_movie_files/Ex/2213807979_2998671424_2038353829.mp4'
+file 'file:C:/Users/juliu/Desktop/media/videos/manim_test1/1080p60/partial_movie_files/Ex/2213807979_1811354106_2038353829.mp4'

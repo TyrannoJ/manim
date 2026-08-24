@@ -1,0 +1,8 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/Users/juliu/Desktop/media/videos/derivatives_test/1080p60/partial_movie_files/Derivatives/819936691_599750604_3664204114.mp4'
+file 'file:C:/Users/juliu/Desktop/media/videos/derivatives_test/1080p60/partial_movie_files/Derivatives/2213807979_3763334168_4193848902.mp4'
+file 'file:C:/Users/juliu/Desktop/media/videos/derivatives_test/1080p60/partial_movie_files/Derivatives/2213807979_258873300_3419545629.mp4'
+file 'file:C:/Users/juliu/Desktop/media/videos/derivatives_test/1080p60/partial_movie_files/Derivatives/2213807979_2030978490_208628266.mp4'
+file 'file:C:/Users/juliu/Desktop/media/videos/derivatives_test/1080p60/partial_movie_files/Derivatives/2213807979_121921008_1674107393.mp4'
+file 'file:C:/Users/juliu/Desktop/media/videos/derivatives_test/1080p60/partial_movie_files/Derivatives/2213807979_3562064901_2821409798.mp4'
+file 'file:C:/Users/juliu/Desktop/media/videos/derivatives_test/1080p60/partial_movie_files/Derivatives/2213807979_1726410222_4096764282.mp4'
