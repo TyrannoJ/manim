@@ -12,10 +12,11 @@ class Derivatives(Scene):
         )
         self.add(ax)
         curves=[]
-        
+        colors=color_gradient([BLUE,RED],power)
         tex=MathTex("").to_corner(UL)
+        i=0
         while power>0:
-            cur=ax.plot(lambda x: (coefficient*pow(x,power)),color=RED,x_range=(-2,2))
+            cur=ax.plot(lambda x: (coefficient*pow(x,power)),color=colors[i],x_range=(-2,2))
             curves.append(cur)
             self.play(
                 Create(cur),
@@ -26,6 +27,7 @@ class Derivatives(Scene):
                 run_time=3
             )
             coefficient,power=self.make_derivative(coefficient,power)
+            i+=1
     def make_derivative(self,co,pow):
         co=co*pow
         pow-=1
