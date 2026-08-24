@@ -6,14 +6,35 @@ final_powers=[]
 null_points=[]
 extreme_points=[]
 turning_points=[]
-coefficients=[1,2,7]
-powers=[5,3,2]
+
 zeros_x_coords=[[],[],[]]
 class Derivatives(Scene):
     
     def construct(self):
+        coefficients=[]
+        powers=[]
+        func=str(input())
+        fu=func.split("+")
         
-        self.create_functions()
+        for f in fu:
+            has_x=False
+            coefficient=""
+            power=""
+            for a in f:
+                print(ord(a))
+                if 47<ord(a)<58:
+                    if has_x != True:
+                        coefficient=coefficient+a
+                    else:
+                        power=power+a
+                else:
+                    has_x=True
+            
+            coefficients.append(int(coefficient))
+            powers.append(int(power))
+        print(coefficients)
+        print(powers)
+        self.create_functions(coefficients,powers)
         highest_x_value=0
         lowest_x_value=0
         for ze in zeros_x_coords:
@@ -66,15 +87,14 @@ class Derivatives(Scene):
         self.add(ax)
         curves=[]
         colors=color_gradient([BLUE,GREEN,RED],3)
-        tex=MathTex("f(x)=").to_corner(UL).scale(0.5)
+        texts=[]
         zeros=[]
         ze=Tex("Zeros").scale(0.7).to_corner(DL).shift(2.5*UP)
         zeros.append(ze)
         self.add(ze)
-        texts=[]
-        texts.append(tex)
         
-        self.add(tex)
+        
+        
         for i in range(0,3):
             coefficients=final_coefficients[i]
             powers=final_powers[i]
@@ -133,70 +153,55 @@ class Derivatives(Scene):
                 null_points.append(points)
                 
 
-            self.play(
-                Create(cur),
-                Transform(
-                        texts[i],
-                        tec
-                    ),
+            # self.play(
+            #     Create(cur),
+            #     Transform(
+            #             texts[i],
+            #             tec
+            #         ),
                 
-                run_time=3
+            #     run_time=3
+            # )
+            # self.play(
+            #     Create(points),
+            #     Write(VGroup(*current_zeros))
+            # )
+            self.add(
+                cur,
+                texts[i],
+                points,
+                VGroup(*current_zeros)
             )
-            self.play(
-                Create(points),
-                Write(VGroup(*current_zeros))
-            )
-            
             
             
         #Extreme Points
         title=Tex("Extreme Points").scale(0.5).to_corner(UR)
 
-        self.wait(2)
-        self.play(
-            FadeOut(curves[2]),
-            FadeOut(texts[2]),
-            FadeOut(null_points[2]),
-            FadeOut(null_points[0]),
-            Write(title),
-            run_time=4
-        )
+        
+        
         
         extremes=VGroup(
-            *[Dot(ax.c2p(ex[0], ex[1]), color=colors[0]) for ex in extreme_points]
+            *[Dot(ax.c2p(ex[0], ex[1]), color=colors[1]) for ex in extreme_points]
         )
         extreme_labels=Group(
-            *[MathTex(rf"{ex[2]} ({ex[0]} ,{ex[1]})",color=colors[0]).scale(0.5).to_corner(UR).shift(DOWN*(i/2+0.5)) for i,ex in enumerate(extreme_points)]
+            *[MathTex(rf"{ex[2]} ({ex[0]} ,{ex[1]})",color=colors[1]).scale(0.5).to_corner(UR).shift(DOWN*(i/2+0.5)) for i,ex in enumerate(extreme_points)]
         )
         #for n in null_points:
             #self.remove(n)
         #self.remove(curves[2])
         #self.add(extremes,extreme_labels)
-        self.play(
-            Write(VGroup(*extreme_labels)),
-            ReplacementTransform(VGroup(*null_points[1]),VGroup(*extremes)),
-            run_time=3
-        )
-        self.wait(2)
+        
+        
         tu=Tex("Turning Points").scale(0.7).to_corner(DR).shift(2.5*UP)
-        self.play(
-            FadeOut(curves[1]),
-            FadeOut(texts[1]),
-            FadeIn(curves[2]),
-            FadeIn(texts[2]),
-            FadeIn(null_points[2]),
-            FadeOut(extremes),
-            Write(tu),
-            run_time=4
-        )
+        
         #Turning Points
         
         
         turns=VGroup(
-            *[Dot(ax.c2p(tu[0], tu[1]), color=colors[0]) for tu in turning_points]
+            *[Dot(ax.c2p(tu[0], tu[1]), color=colors[2]) for tu in turning_points]
         )
         turning_labels=Group(
-            *[MathTex(rf"{tu[2]} ({tu[0]} ,{tu[1]})",color=colors[0],tex_to_color_map={"R":YELLOW,"L":PURPLE}).scale(0.5).to_corner(DR).shift(UP*(2-(i/2))) for i,tu in enumerate(turning_points)]
+            *[MathTex(rf"{tu[2]} ({tu[0]} ,{tu[1]})",color=colors[2],tex_to_color_map={"R":YELLOW,"L":PURPLE}).scale(0.5).to_corner(DR).shift(UP*(2-(i/2))) for i,tu in enumerate(turning_points)]
         )
         #self.add(curves[2])
         #self.remove(curves[1],extremes)
@@ -219,16 +224,26 @@ class Derivatives(Scene):
             col=PURPLE
         cur=ax.plot(lambda x:self.final_function(x,final_coefficients[0],final_powers[0]),color=col,x_range=(turning_points[len(turning_points)-1][0],x_val))
         show_curves.append(cur)
-        self.play(
-            Create(VGroup(*show_curves)),
-            Write(VGroup(*turning_labels)),
-            ReplacementTransform(VGroup(*null_points[2]),VGroup(*turns)),
-            run_time=3
+        
+        self.remove(
+            null_points[1],
+            null_points[2]
+        )
+        self.add(
+            title,
+            VGroup(*extreme_labels),
+            VGroup(*extremes),
+            tu,
+            VGroup(*turning_labels),
+            VGroup(*turns),
+            #VGroup(*show_curves)
+
+
         )
         self.wait(3)
 
 
-    def create_functions(self):
+    def create_functions(self,coefficients,powers):
         for i in range(0,4):
             final_coefficients.append(coefficients.copy())
             final_powers.append(powers.copy())
