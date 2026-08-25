@@ -6,8 +6,8 @@ final_powers=[]
 null_points=[]
 extreme_points=[]
 turning_points=[]
-coefficients=[1,2,7]
-powers=[5,3,2]
+coefficients=[15,12,3]
+powers=[7,4,2]
 zeros_x_coords=[[],[],[]]
 class Derivatives(Scene):
     
@@ -34,17 +34,27 @@ class Derivatives(Scene):
                 highest_y_value=tu[1]
             if tu[1]<lowest_y_value:
                 lowest_y_value=tu[1]
-        
+        for co,po in zip(final_coefficients,final_powers):
+            y=self.final_function(0,co,po)
+            if y<lowest_y_value:
+                lowest_y_value=y
+            if y>highest_y_value:
+                highest_y_value=y
         x_val=round(3*max(highest_x_value,abs(lowest_x_value)))
         y_val=round(4*max(highest_y_value,abs(lowest_y_value)))
         if x_val==0:
             x_val=5
         if y_val==0:
             y_val=5
-        
+        x_step=round(x_val/4)
+        if x_step==0:
+            x_step=1
+        y_step=round(y_val/4)
+        if y_step==0:
+            y_step=1
         ax=Axes(
-            (-x_val,x_val,round(x_val/4)),
-            (-y_val,y_val,round(y_val/4)),
+            (-x_val,x_val,x_step),
+            (-y_val,y_val,y_step),
             13,
             7,
             
@@ -82,7 +92,20 @@ class Derivatives(Scene):
                 op=1
             else:
                 op=0.5
-            cur=ax.plot(lambda x:self.final_function(x,coefficients,powers),color=colors[i],x_range=(-x_val,x_val)).set_stroke(opacity=op)
+            negative_boundary=-x_val
+            for x in np.arange(0.0,float(-x_val),-0.1):
+                
+                if abs(self.final_function(x,coefficients,powers))>abs(y_val):
+                    negative_boundary=x
+                    break
+            positive_boundary=x_val
+            
+            for x in np.arange(0.0,float(x_val),0.1):
+                            
+                if abs(self.final_function(x,coefficients,powers))>abs(y_val):
+                    positive_boundary=x
+                    break
+            cur=ax.plot(lambda x:self.final_function(x,coefficients,powers),color=colors[i],x_range=(negative_boundary,positive_boundary)).set_stroke(opacity=op)
             curves.append(cur)
             if i==0:
                 text=rf"f(x)="
@@ -123,7 +146,7 @@ class Derivatives(Scene):
             if solutions:
                 for s in solutions:
                     so=s.evalf(3)
-                    ze=Tex(str(so),color=colors[i]).scale(0.5).to_corner(DL).shift(UP*(2.5-(len(zeros)/2)))
+                    ze=Tex(str(so),color=colors[i]).scale(0.5).to_corner(DL).shift(RIGHT*(len(current_zeros)/2))
                     zeros.append(ze)
                     current_zeros.append(ze)
                     #self.add(ze)
@@ -144,13 +167,15 @@ class Derivatives(Scene):
             )
             self.play(
                 Create(points),
-                Write(VGroup(*current_zeros))
+                Write(VGroup(*current_zeros).shift(UP*(2.5-(0.5*i+0.5))))
             )
             
             
-            
+        if len(null_points)<4:
+            for i in range(0,2):
+                null_points.append(Dot(1000,0))
         #Extreme Points
-        title=Tex("Extreme Points").scale(0.5).to_corner(UR)
+        title=Tex("Extreme Points").scale(0.7).to_corner(UR)
 
         self.wait(2)
         self.play(
@@ -180,8 +205,8 @@ class Derivatives(Scene):
         self.wait(2)
         tu=Tex("Turning Points").scale(0.7).to_corner(DR).shift(2.5*UP)
         self.play(
-            FadeOut(curves[1]),
-            FadeOut(texts[1]),
+            #FadeOut(curves[1]),
+            #FadeOut(texts[1]),
             FadeIn(curves[2]),
             FadeIn(texts[2]),
             FadeIn(null_points[2]),
@@ -202,8 +227,9 @@ class Derivatives(Scene):
         #self.remove(curves[1],extremes)
         #self.add(turns,turning_labels)
         show_curves=[]
+        extremes_first_derivative=[]
         for i in range(0,len(turning_points)):
-            
+            extremes_first_derivative.append(Dot(ax.c2p(turning_points[i][0],self.final_function(turning_points[i][0].evalf(3),final_coefficients[1],final_powers[1])),color=colors[1]))
             if turning_points[i][2][0]=="R":
                 col=YELLOW
             else:
@@ -213,19 +239,24 @@ class Derivatives(Scene):
             else:
                 cur=ax.plot(lambda x:self.final_function(x,final_coefficients[0],final_powers[0]),color=col,x_range=(turning_points[i-1][0],turning_points[i][0]))
             show_curves.append(cur)
-        if turning_points[len(turning_points)-1][2][2]=="R":
-            col=YELLOW
-        else:
-            col=PURPLE
-        cur=ax.plot(lambda x:self.final_function(x,final_coefficients[0],final_powers[0]),color=col,x_range=(turning_points[len(turning_points)-1][0],x_val))
-        show_curves.append(cur)
-        self.play(
-            Create(VGroup(*show_curves)),
-            Write(VGroup(*turning_labels)),
-            ReplacementTransform(VGroup(*null_points[2]),VGroup(*turns)),
-            run_time=3
-        )
-        self.wait(3)
+        if turning_points!=[]:
+            if turning_points[len(turning_points)-1][2][2]=="R":
+                col=YELLOW
+            else:
+                col=PURPLE
+            cur=ax.plot(lambda x:self.final_function(x,final_coefficients[0],final_powers[0]),color=col,x_range=(turning_points[len(turning_points)-1][0],x_val))
+            show_curves.append(cur)
+            self.play(
+                ReplacementTransform(VGroup(*null_points[2]),VGroup(*extremes_first_derivative)),
+                run_time=2
+            )
+            self.play(
+                Create(VGroup(*show_curves)),
+                Write(VGroup(*turning_labels)),
+                ReplacementTransform(VGroup(*extremes_first_derivative),VGroup(*turns)),
+                run_time=3
+            )
+            self.wait(3)
 
 
     def create_functions(self):
@@ -235,8 +266,15 @@ class Derivatives(Scene):
             solutions=self.zero_points(coefficients,powers,i)
             if i !=3:
                 if solutions:
-                    for s in solutions:
-                        zeros_x_coords[i].append(s)
+                    try:
+                        for s in solutions:
+                            
+                            
+                            
+                            zeros_x_coords[i].append(s)
+                            
+                    except:
+                        print("weird shit")
                 for i in range(0,len(powers)):
                     coefficients[i],powers[i]=self.make_derivative(coefficients[i],powers[i])
         
@@ -282,7 +320,17 @@ class Derivatives(Scene):
                 value=""
                 third_derivative_value=self.final_function(p[0].evalf(3),final_coefficients[3],final_powers[3])
                 if third_derivative_value==0:
-                    value="?"
+                    left_value=self.final_function(p[0].evalf(3)-0.1,final_coefficients[2],final_powers[2])
+                    right_value=self.final_function(p[0].evalf(3)+0.1,final_coefficients[2],final_powers[2])
+                    value=""
+                    if left_value>0:
+                        value=value+"L-"
+                    else:
+                        value=value+"R-"
+                    if right_value>0:
+                        value=value+"L"
+                    else:
+                        value=value+"R"
                 if third_derivative_value>0:
                     value="R-L"
                 if third_derivative_value<0:
