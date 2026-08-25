@@ -13,7 +13,7 @@ class Derivatives(Scene):
     def construct(self):
         coefficients=[]#[-4.5,-3]
         powers=[]#[6,4]
-        func= "-4.5x10+3.2x7+11.5x4+-2.23x3"
+        func= "-4.5x10+4x2+-3x1"
         fu=func.split("+")
         
         for f in fu:
@@ -142,33 +142,34 @@ class Derivatives(Scene):
             curves.append(cur)
             if i==0:
                 text=rf"f(x)="
-                for co in zip(coefficients,powers):
-                    if co[1]==0:
-                        text=text+rf"+{co[0]}"
-                    else:
-                     text=text+rf"+{co[0]}*x^{co[1]}"
-                tec=MathTex(text,color=colors[i]).scale(0.5).to_corner(UL)
-                texts.append(tec.copy())
-                    
             elif i==1:
                 text=rf"f'(x)="
-                for co in zip(coefficients,powers):
-                    if co[1]==0:
-                        text=text+rf"+{co[0]}"
-                    if co[1]>0:
-                        text=text+rf"+{co[0]}*x^{co[1]}"
-                tec=MathTex(text,color=colors[i]).scale(0.5).to_corner(UL).shift(0.5*DOWN)
-                texts.append(tec.copy())
-                
             elif i==2:
                 text=rf"f''(x)="
-                for co in zip(coefficients,powers):
-                    if co[1]==0:
-                        text=text+rf"+{co[0]}"
-                    if co[1]>0:
-                        text=text+rf"+{co[0]}*x^{co[1]}"
-                tec=MathTex(text,color=colors[i]).scale(0.5).to_corner(UL).shift(DOWN)
+            for j,co in enumerate(zip(coefficients,powers)):
+                if j==0 or str(co[0])[0]=="-" or co[1]<0:
+                    pass
+                else:
+                    text+="+"
+                if co[1]==0:
+                    text=text+rf"{co[0]}"
+                elif co[1]==1:
+                    text=text+rf"{co[0]}*x"
+                elif co[1]<0:
+                    text=text
+                else:
+                    text=text+rf"{co[0]}*x^{{{co[1]}}}"
+            if i==0:
+                tec=MathTex(text,color=colors[i]).scale(0.5).to_corner(UL)
                 texts.append(tec.copy())
+            elif i==1:
+                tec=MathTex(text,color=colors[i]).scale(0.5).to_corner(UL).shift(0.5*DOWN)
+                texts.append(tec.copy())
+            elif i==2:
+                tec=MathTex(text,color=colors[i]).scale(0.5).to_corner(UL).shift(DOWN)
+                
+                texts.append(tec.copy())
+            
             hiding_rects[0].stretch_to_fit_height(i*0.5+0.5)
             hiding_rects[0].stretch_to_fit_width(tec.get_width())
             hiding_rects[0].move_to(tec.get_center())
