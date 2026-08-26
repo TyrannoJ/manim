@@ -19,6 +19,8 @@ The only difference between the two is, that the simple version only shows all t
 I used *manim* to animate any *sympy* for the zero points
 This is my first manim project and I'm quite happy with how it turned out
 
+![picture of graph]("./images/Screenshot 2026-08-24 224946.png")
+
 ## to Do
 - maybe make interactive
 - better Readme
