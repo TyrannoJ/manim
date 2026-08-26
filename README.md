@@ -15,13 +15,21 @@ With both you can basically do the same
 
 The only difference between the two is, that the simple version only shows all that to you while the other one animates it 
 [look at the program outputs here](https://tyrannoj.github.io/manim/index.html)
+
+## What do the results mean:
+it's pretty self explanatory:
+- blue is the main function and it's zeros
+- green is the first derivative and it's zeros and in simple mode the extremes
+- red is the second derivative and it's zeros and in simple mode the turns
+- purple is where the main function is curved to the left
+- yellow is where the main function is curved to the right
+
 ## How did I build it
 I used *manim* to animate any *sympy* for the zero points
 This is my first manim project and I'm quite happy with how it turned out
 
 
 
-## to Do
+## to Do (for future reference)
 - maybe make interactive
-- better Readme
-- make input better
+- make input more user friendly

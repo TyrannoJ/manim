@@ -11,6 +11,7 @@ zeros_x_coords=[[],[],[]]
 class Derivatives(Scene):
     
     def construct(self):
+        #get Input
         coefficients=[]#[-4.5,-3]
         powers=[]#[6,4]
         func= "-4.5x10+4x2+-3x1"
@@ -33,6 +34,7 @@ class Derivatives(Scene):
             coefficients.append(float(coefficient))
             powers.append(int(power))
 
+        #create axes
 
         self.create_functions(coefficients,powers)
         highest_x_value=0
@@ -93,15 +95,15 @@ class Derivatives(Scene):
             },
                 )
 
-        #Add functions
+        
         
         self.add(ax)
         curves=[]
         colors=color_gradient([BLUE,GREEN,RED],3)
         tex=MathTex("f(x)=").to_corner(UL).scale(0.5)
-        zeros=[]
+        zeros=VGroup()
         ze=Tex("Zeros").scale(0.7).to_corner(DL).shift(2.5*UP)
-        zeros.append(ze)
+        zeros.add(ze)
         self.add(ze)
         texts=[]
         texts.append(tex)
@@ -112,9 +114,12 @@ class Derivatives(Scene):
         hiding_rects[1].to_corner(DL)
         hiding_rects[2].to_corner(UR)
         hiding_rects[3].to_corner(DR)
+        longest_widths=[1,1,1,1]
         self.add(tex)
+        tects=VGroup()
         for i in range(0,3):
-            
+            # Draw Functions and Zeros
+
             coefficients=final_coefficients[i]
             powers=final_powers[i]
             if i==0:
@@ -140,6 +145,7 @@ class Derivatives(Scene):
             for r in ranges:
                 cur.append(ax.plot(lambda x:self.final_function(x,coefficients,powers),color=colors[i],x_range=(r[0],r[1])).set_stroke(opacity=op).set_z_index(-2))
             curves.append(cur)
+            
             if i==0:
                 text=rf"f(x)="
             elif i==1:
@@ -169,58 +175,66 @@ class Derivatives(Scene):
                 tec=MathTex(text,color=colors[i]).scale(0.5).to_corner(UL).shift(DOWN)
                 
                 texts.append(tec.copy())
-            
+            tects.add(tec)
+            longest_widths[0]=max(longest_widths[0],tec.get_width())
             hiding_rects[0].stretch_to_fit_height(i*0.5+0.5)
-            hiding_rects[0].stretch_to_fit_width(tec.get_width())
-            hiding_rects[0].move_to(tec.get_center())
+            hiding_rects[0].stretch_to_fit_width(max(longest_widths[0],tec.get_width()))
+            hiding_rects[0].move_to(tects.get_center())
             hiding_rects[0].align_to(tec,DOWN).set_z_index(-1)
-           # print(self.final_function(2,coefficients,powers))
-            #print(self.zero_points(coefficients,powers))
+           
             
             solutions=zeros_x_coords[i]
-            #self.add(cur,tec)
+            
            
             current_zeros=[]
             if solutions:
                 for s in solutions:
                     so=s.evalf(3)
                     ze=Tex(str(so),color=colors[i]).scale(0.5).to_corner(DL).shift(RIGHT*(len(current_zeros)))
-                    zeros.append(ze)
+                    zeros.add(ze)
                     current_zeros.append(ze)
-                    #self.add(ze)
+                    
                 points=VGroup(
                     *[Dot(ax.c2p(sol, 0), color=colors[i]) for sol in solutions]
                 )
                 null_points.append(points)
             zero_v_group=VGroup(*current_zeros).shift(UP*(2.5-(0.5*i+0.5)))
+            longest_widths[1]=max(longest_widths[1],zero_v_group.get_width())
             hiding_rects[1].stretch_to_fit_height(i*0.5+1)
-            hiding_rects[1].stretch_to_fit_width(zero_v_group.get_width())
-            hiding_rects[1].move_to(zero_v_group.get_center())
+            hiding_rects[1].stretch_to_fit_width(max(zero_v_group.get_width(),longest_widths[1]))
+            hiding_rects[1].move_to(zeros.get_center())
             hiding_rects[1].align_to(zero_v_group,DOWN).set_z_index(-1)
                 
-            
+            self.remove(
+                hiding_rects[0],
+                hiding_rects[1]
+            )
+            self.add(
+                hiding_rects[0],
+                hiding_rects[1]
+            )
             self.play(
                 Create(VGroup(*cur)),
                 Transform(
                         texts[i],
                         tec
                     ),
-                Create(hiding_rects[0]),
-                Create(hiding_rects[1]),
                 run_time=3
             )
             
             self.play(
                 Create(points),
                 Write(zero_v_group),
-                
+                run_time=2
             )
             
             
         if len(null_points)<4:
             for i in range(0,2):
                 null_points.append(Dot(1000,0))
+
         #Extreme Points
+
         title=Tex("Extreme Points").scale(0.7).to_corner(UR)
 
         self.wait(2)
@@ -230,7 +244,7 @@ class Derivatives(Scene):
             FadeOut(null_points[2]),
             FadeOut(null_points[0]),
             Write(title),
-            run_time=4
+            run_time=3
         )
         
         extremes=VGroup(
@@ -243,10 +257,7 @@ class Derivatives(Scene):
         hiding_rects[2].stretch_to_fit_width(extreme_labels.get_width())
         hiding_rects[2].move_to(extreme_labels.get_center())
         hiding_rects[2].align_to(extreme_labels,DOWN).set_z_index(-1)
-        #for n in null_points:
-            #self.remove(n)
-        #self.remove(curves[2])
-        #self.add(extremes,extreme_labels)
+        
         null_points_v_group=VGroup(*null_points[1])
         self.play(
             Write(VGroup(*extreme_labels)),
@@ -254,21 +265,20 @@ class Derivatives(Scene):
                 ReplacementTransform(null_points_v_group[j],VGroup(*extremes)[j])
                 for j in range(0,len(extremes))
             ],
-             #VGroup(*null_points[1]),VGroup(*extremes) #(null_points_v_group[j] for j in range(0,len(extremes))),(extremes[j] for j in range(0,len(extremes)))
+            
             Create(hiding_rects[2]),
             run_time=3
         )
         self.wait(2)
         tu=Tex("Turning Points").scale(0.7).to_corner(DR).shift(2.5*UP)
         self.play(
-            #FadeOut(curves[1]),
-            #FadeOut(texts[1]),
+            
             FadeIn(VGroup(*curves[2])),
             FadeIn(texts[2]),
             FadeIn(null_points[2]),
             FadeOut(extremes),
             Write(tu),
-            run_time=4
+            run_time=3
         )
         #Turning Points
         
@@ -283,9 +293,7 @@ class Derivatives(Scene):
         hiding_rects[3].stretch_to_fit_width(turning_labels.get_width())
         hiding_rects[3].move_to(turning_labels.get_center())
         hiding_rects[3].align_to(turning_labels,DOWN).set_z_index(-1)
-        #self.add(curves[2])
-        #self.remove(curves[1],extremes)
-        #self.add(turns,turning_labels)
+        
         show_curves=[]
         extremes_first_derivative=[]
         for i in range(0,len(turning_points)):
@@ -335,7 +343,7 @@ class Derivatives(Scene):
                             zeros_x_coords[i].append(s)
                             
                     except:
-                        print("weird shit")
+                        print("weird zeros, don't worry")
                     zeros_x_coords[i].sort()
                 for i in range(0,len(powers)):
                     coefficients[i],powers[i]=self.make_derivative(coefficients[i],powers[i])
