@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "manim-derivatives"
+version = "0.1.0"
+description = "Tool for plotting derivatives with manim"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "manim",
+    "sympy"
+]
+
+[project.scripts]
+render-animation="manim_derivatives.__init__:render_animation"
+render-picture="manim_derivatives.__init__:render_picture"
