@@ -21,8 +21,26 @@ class Derivatives(Scene):
         while accepted==False:
             accepted=True
             func=str(input())
-            fu=func.split("+")
+            #fu=func.split("+")
+            fu=[""]
             
+            element=0
+            for i,f in enumerate(func):
+                if f != "+" and f != "-":
+
+                    fu[element]+=f
+                else:
+                    if f=="+":
+                        element+=1
+                        fu.append("")
+                    elif f=="-":
+                        
+                        if i !=0:
+                            element+=1
+                            fu.append("")
+                        fu[element]+="-"
+                        
+            print(fu)
             for f in fu:
                 has_x=False
                 coefficient=""
@@ -37,7 +55,14 @@ class Derivatives(Scene):
                     else:
                         has_x=True
                 try:
-
+                    if coefficient=="":
+                        coefficient="1"
+                    if coefficient=="-":
+                        coefficient="-1"
+                    if has_x==False:
+                        power=0
+                    if power=="":
+                        power=1
                     coefficients.append(float(coefficient))
                     powers.append(int(power))
                 except:
@@ -108,7 +133,7 @@ class Derivatives(Scene):
                 "include_tip": False,
                 
             },
-                )
+                ).set_z_index(-3)
 
         
         
@@ -129,7 +154,7 @@ class Derivatives(Scene):
         hiding_rects[3].to_corner(DR)
         longest_widths=[1,1,1,1]
         tects=VGroup()
-        
+        final_ranges=[]
         
         for i in range(0,3):
             #plot functions and zeros
@@ -142,8 +167,8 @@ class Derivatives(Scene):
             
             ranges=[]
             in_frame=False
-            current_lower_boundary=0
-            current_upper_boundary=0
+            current_lower_boundary=round(-x_val)
+            current_upper_boundary=round(x_val)
             cur=[]
             for x in np.arange(float(-x_val),float(x_val),0.1):
                             
@@ -156,9 +181,11 @@ class Derivatives(Scene):
                         current_upper_boundary=x+0.1
                         ranges.append([current_lower_boundary,current_upper_boundary])
                     in_frame=False
+            if ranges==[]:
+                ranges.append([current_lower_boundary,current_upper_boundary])
             for r in ranges:
                 cur.append(ax.plot(lambda x:self.final_function(x,coefficients,powers),color=colors[i],x_range=(r[0],r[1])).set_stroke(opacity=op).set_z_index(-2))
-            
+            final_ranges.append(ranges)
             tec:MathTex
             curves.append(cur)
             if i==0:
@@ -207,17 +234,22 @@ class Derivatives(Scene):
             
            
             current_zeros=[]
+            print(solutions)
+            points=VGroup()
             if solutions:
+                
                 for s in solutions:
                     so=s.evalf(3)
                     ze=Tex(str(so),color=colors[i]).scale(0.5).to_corner(DL).shift(RIGHT*(len(current_zeros)))
                     zeros.add(ze)
                     current_zeros.append(ze)
-                    
+                
                 points=VGroup(
                     *[Dot(ax.c2p(sol, 0), color=colors[i]) for sol in solutions]
                 )
-                null_points.append(points)
+                
+                
+                
                 
             zero_v_group=VGroup(*current_zeros).shift(UP*(2.5-(0.5*i+0.5)))
             longest_widths[1]=max(longest_widths[1],zero_v_group.get_width())
@@ -225,12 +257,24 @@ class Derivatives(Scene):
             hiding_rects[1].stretch_to_fit_width(max(zero_v_group.get_width(),longest_widths[1]))
             hiding_rects[1].move_to(zeros.get_center())
             hiding_rects[1].align_to(zero_v_group,DOWN).set_z_index(-1)
+            #print(points)
+            if not points:
+                points=VGroup()
+            null_points.append(points)
+            print(points)
             self.add(
                 VGroup(*cur),
                 texts[i],
                 points,
                 zero_v_group
             )
+            if len(zeros) !=0:
+                self.add(
+                    
+                    hiding_rects[1]
+                )
+            
+                
             
             
         #Extreme Points
@@ -238,7 +282,7 @@ class Derivatives(Scene):
 
         
         
-        
+        print(extreme_points)
         extremes=VGroup(
             *[Dot(ax.c2p(ex[0], ex[1]), color=colors[1]) for ex in extreme_points]
         )
@@ -288,6 +332,21 @@ class Derivatives(Scene):
                 col=PURPLE
             cur=ax.plot(lambda x:self.final_function(x,final_coefficients[0],final_powers[0]),color=col,x_range=(turning_points[len(turning_points)-1][0],x_val)).set_z_index(-2)
             show_curves.append(cur)
+        else:
+            
+            second_derivative_value=self.final_function(0,final_coefficients[2],final_powers[2])
+            if second_derivative_value !=0:
+
+                if second_derivative_value<0:
+                    col=YELLOW
+                else:
+                    col=PURPLE
+                print(col)   
+                cur=ax.plot(lambda x:self.final_function(x,final_coefficients[0],final_powers[0]),color=col,x_range=(-x_val,x_val))#.set_z_index(-2)
+                show_curves.append(cur)
+            else:
+                pass
+        print(null_points)
         if len(null_points) >=2:
             self.remove(
                 null_points[1],
@@ -306,7 +365,9 @@ class Derivatives(Scene):
             VGroup(*turning_labels),
             VGroup(*turns),
             VGroup(*show_curves),
-            hiding_rects,
+            hiding_rects[0],
+            hiding_rects[2],
+            hiding_rects[3],
 
 
         )
@@ -332,10 +393,12 @@ class Derivatives(Scene):
                     zeros_x_coords[i].sort()
                 for i in range(0,len(powers)):
                     coefficients[i],powers[i]=self.make_derivative(coefficients[i],powers[i])
+        print(zeros_x_coords)
         
     def make_derivative(self,co,pow):
         co=round(co*pow,3)
-        pow-=1
+        if pow >0:
+            pow-=1
         return co,pow
     def final_function(self,x,co,po):
         y=0
@@ -351,7 +414,10 @@ class Derivatives(Scene):
                 a=a+co[i]*x**po[i]
         
         points=sp.solveset(a,x,domain=sp.S.Reals)
-        
+        print(co[0])
+        print(po[0])
+        if co[0]==0 and po[0]<=0:
+            points=sp.solveset(1,x,domain=sp.S.Reals)
         
         if iteration==1 and points:
             
@@ -375,7 +441,10 @@ class Derivatives(Scene):
                 for p in points:
                     
                     turning_points.append([p.evalf(3),self.final_function(p.evalf(3),final_coefficients[0],final_powers[0]).evalf(3)])
+            
                 turning_points.sort(key=lambda item: item[0])
+                
+
         if iteration==3:
             for i,p in enumerate(turning_points):
                 value=""

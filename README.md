@@ -2,7 +2,7 @@
 
 ## What does it do?
 
-There are two main code here.
+There are two main codes here.
 - useful_derivatives.py
 - derivatives_simple.py
 
@@ -24,8 +24,14 @@ it's pretty self explanatory:
 - purple is where the main function is curved to the left
 - yellow is where the main function is curved to the right
 
+## How can you do it yourself 
+You can simply install pipx and run this command 
+pipx install "git+https://github.com/TyrannoJ/manim#subdirectory=python_project" .
+Then you can run render-picture for an image and render-animation for a video.
+To Input your function you just type it in this style *coefficient*x*power*+*next-coefficien*x*next-power*...
+
 ## How did I build it
-I used *manim* to animate and *sympy* for the zero points. I used perplexity and a little GitHub Copilot for research especially for specific manim functions and to write a few little functionalities with syntaxes I didn't know but never more than 2-3 lines. I also used it to understand the errors that were output.
+I used *manim* to animate and *sympy* for the zero points. I used perplexity and a little GitHub Copilot for research especially for specific manim functions and to write a few little functionalities with syntaxes I didn't know but never more than 2-3 lines and a lot of help on the package structure. I also used it to understand the errors that were output.
 This is my first manim project and I'm quite happy with how it turned out and I plan to do more.
 
 
@@ -33,4 +39,8 @@ This is my first manim project and I'm quite happy with how it turned out and I 
 ## to Do (for future reference)
 - maybe make interactive
 - make input more user friendly
+- accept \- signs for separation
+- accept x0 and x1 156m78
+- make handle of constants better
+- better coeficients
 
