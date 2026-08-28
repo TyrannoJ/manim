@@ -19,23 +19,32 @@ class Derivatives(Scene):
         powers=[]#[6,4]
         func= "-4.5x10+4x2+-3x1"
         fu=func.split("+")
-        
-        for f in fu:
-            has_x=False
-            coefficient=""
-            power=""
-            for a in f:
-                
-                if 47<ord(a)<58 or a=="-" or a==".":
-                    if has_x != True:
-                        coefficient=coefficient+a
-                    else:
-                        power=power+a
-                else:
-                    has_x=True
+        accepted=False
+        while accepted==False:
+            accepted=True
+            func=str(input())
+            fu=func.split("+")
             
-            coefficients.append(float(coefficient))
-            powers.append(int(power))
+            for f in fu:
+                has_x=False
+                coefficient=""
+                power=""
+                for a in f:
+                    
+                    if 47<ord(a)<58 or a=="-" or a==".":
+                        if has_x != True:
+                            coefficient=coefficient+a
+                        else:
+                            power=power+a
+                    else:
+                        has_x=True
+                try:
+
+                    coefficients.append(float(coefficient))
+                    powers.append(int(power))
+                except:
+                    accepted=False
+                    print("Invalid Input")
 
         #create axes
 
