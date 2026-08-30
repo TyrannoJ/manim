@@ -1,3 +1,0 @@
-[console_scripts]
-render-animation = manim_derivatives.__init__:render_animation
-render-picture = manim_derivatives.__init__:render_picture
