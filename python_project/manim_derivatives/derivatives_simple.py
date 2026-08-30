@@ -40,7 +40,7 @@ class Derivatives(Scene):
                             fu.append("")
                         fu[element]+="-"
                         
-            print(fu)
+            
             for f in fu: #make equations to numbers
                 has_x=False
                 coefficient=""
@@ -263,11 +263,11 @@ class Derivatives(Scene):
             hiding_rects[1].stretch_to_fit_width(max(zero_v_group.get_width(),longest_widths[1]))
             hiding_rects[1].move_to(zeros.get_center())
             hiding_rects[1].align_to(zero_v_group,DOWN).set_z_index(-1)
-            #print(points)
+            
             if not points:
                 points=VGroup()
             null_points.append(points)
-            print(points)
+            
             #add all of the above
             self.add(
                 VGroup(*cur),
@@ -349,12 +349,12 @@ class Derivatives(Scene):
                     col=YELLOW
                 else:
                     col=PURPLE
-                print(col)   
+                   
                 cur=ax.plot(lambda x:self.final_function(x,final_coefficients[0],final_powers[0]),color=col,x_range=(-x_val,x_val))#.set_z_index(-2)
                 show_curves.append(cur)
             else:
                 pass
-        print(null_points)
+        
         if len(null_points) >=2:
             self.remove(
                 null_points[1],
@@ -402,7 +402,7 @@ class Derivatives(Scene):
                     zeros_x_coords[i].sort()
                 for i in range(0,len(powers)):
                     coefficients[i],powers[i]=self.make_derivative(coefficients[i],powers[i])
-        print(zeros_x_coords)
+        
         
     def make_derivative(self,co,pow):
         co=round(co*pow,3)
@@ -424,8 +424,7 @@ class Derivatives(Scene):
                 a=a+co[i]*x**po[i]
         
         points=sp.solveset(a,x,domain=sp.S.Reals)
-        print(co[0])
-        print(po[0])
+        
         if co[0]==0 and po[0]<=0:
             points=sp.solveset(1,x,domain=sp.S.Reals)
         
