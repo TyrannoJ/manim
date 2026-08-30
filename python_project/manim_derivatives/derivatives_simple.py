@@ -23,8 +23,8 @@ class Derivatives(Scene):
             func=str(input())
             #fu=func.split("+")
             fu=[""]
-            
-            element=0
+            #seperate equations
+            element=0 
             for i,f in enumerate(func):
                 if f != "+" and f != "-":
 
@@ -41,7 +41,7 @@ class Derivatives(Scene):
                         fu[element]+="-"
                         
             print(fu)
-            for f in fu:
+            for f in fu: #make equations to numbers
                 has_x=False
                 coefficient=""
                 power=""
@@ -73,6 +73,8 @@ class Derivatives(Scene):
                 
         
         self.create_functions(coefficients,powers)
+
+         # find value range of axes based on zeros and y coordinates, so you can see all the functions and all the interesting points
         highest_x_value=0
         lowest_x_value=0
         for ze in zeros_x_coords:
@@ -136,7 +138,7 @@ class Derivatives(Scene):
                 ).set_z_index(-3)
 
         
-        
+        # define a bunch of starting variables
         self.add(ax)
         curves=[]
         colors=color_gradient([BLUE,GREEN,RED],3)
@@ -156,7 +158,7 @@ class Derivatives(Scene):
         tects=VGroup()
         final_ranges=[]
         
-        for i in range(0,3):
+        for i in range(0,3): # Draw Functions and Zeros (goes through all three functions)
             #plot functions and zeros
             coefficients=final_coefficients[i]
             powers=final_powers[i]
@@ -170,6 +172,7 @@ class Derivatives(Scene):
             current_lower_boundary=round(-x_val)
             current_upper_boundary=round(x_val)
             cur=[]
+            #find ranges where the functions is in the visible range
             for x in np.arange(float(-x_val),float(x_val),0.1):
                             
                 if abs(self.final_function(x,coefficients,powers))<abs(y_val):
@@ -183,11 +186,13 @@ class Derivatives(Scene):
                     in_frame=False
             if ranges==[]:
                 ranges.append([current_lower_boundary,current_upper_boundary])
+            #draw function graph
             for r in ranges:
                 cur.append(ax.plot(lambda x:self.final_function(x,coefficients,powers),color=colors[i],x_range=(r[0],r[1])).set_stroke(opacity=op).set_z_index(-2))
             final_ranges.append(ranges)
             tec:MathTex
             curves.append(cur)
+            #write function
             if i==0:
                 text=rf"f(x)="
             elif i==1:
@@ -221,7 +226,7 @@ class Derivatives(Scene):
             
                 
                 
-                
+            #create rectangles for better readability
             tects.add(tec)
             longest_widths[0]=max(longest_widths[0],tec.get_width())
             hiding_rects[0].stretch_to_fit_height(i*0.5+0.5)
@@ -234,7 +239,8 @@ class Derivatives(Scene):
             
            
             current_zeros=[]
-            print(solutions)
+            
+            # create zero points and zero texts
             points=VGroup()
             if solutions:
                 
@@ -262,6 +268,7 @@ class Derivatives(Scene):
                 points=VGroup()
             null_points.append(points)
             print(points)
+            #add all of the above
             self.add(
                 VGroup(*cur),
                 texts[i],
@@ -282,7 +289,7 @@ class Derivatives(Scene):
 
         
         
-        print(extreme_points)
+        
         extremes=VGroup(
             *[Dot(ax.c2p(ex[0], ex[1]), color=colors[1]) for ex in extreme_points]
         )
@@ -311,7 +318,8 @@ class Derivatives(Scene):
         hiding_rects[3].stretch_to_fit_width(turning_labels.get_width())
         hiding_rects[3].move_to(turning_labels.get_center())
         hiding_rects[3].align_to(turning_labels,DOWN).set_z_index(-1)
-        
+
+        #create graphs to show curvature
         show_curves=[]
         for i in range(0,len(turning_points)):
             
@@ -375,6 +383,7 @@ class Derivatives(Scene):
 
 
     def create_functions(self,coefficients,powers):
+        #calculate all important values
         for i in range(0,4):
             final_coefficients.append(coefficients.copy())
             final_powers.append(powers.copy())
@@ -401,6 +410,7 @@ class Derivatives(Scene):
             pow-=1
         return co,pow
     def final_function(self,x,co,po):
+        #calculate function value at point x
         y=0
         for i in range(0,len(po)):
             if po[i]>=0:
@@ -425,7 +435,7 @@ class Derivatives(Scene):
                 extreme_points.append([p.evalf(3),self.final_function(p.evalf(3),final_coefficients[0],final_powers[0]).evalf(3)])
             extreme_points.sort(key=lambda item: item[0])
         if iteration==2:
-            for p in extreme_points:
+            for p in extreme_points: #add type to extreme points
                 value=""
                 second_derivative_value=self.final_function(p[0],final_coefficients[2],final_powers[2])
                 
@@ -446,7 +456,7 @@ class Derivatives(Scene):
                 
 
         if iteration==3:
-            for i,p in enumerate(turning_points):
+            for p in turning_points: #add type to turning points
                 value=""
                 third_derivative_value=self.final_function(p[0],final_coefficients[3],final_powers[3])
                 

@@ -17,21 +17,39 @@ The only difference between the two is, that the simple version only shows all t
 [look at the program outputs here](https://tyrannoj.github.io/manim/index.html)
 
 ## What do the results mean:
-it's pretty self explanatory:
-- blue is the main function and it's zeros
-- green is the first derivative and it's zeros and in simple mode the extremes
-- red is the second derivative and it's zeros and in simple mode the turns
+
+### in the picture version 
+- blue line: main function 
+- blue dots: zeros of the main function 
+- green line: the first derivative function 
+- green dots: extremes of the main function
+- red line: second derivative function 
+- red dots: turning points of the main function
 - purple is where the main function is curved to the left
 - yellow is where the main function is curved to the right
 
+### in the animation
+
+- First it animates the main function and it's zeros in blue
+- then the first derivative function and it's zeros in green
+- then the second derivative function and it's zeros in red
+- Afterwards it shows you the extremes in Blue
+- And then the turns in Blue and the curvature of the function purple=left yellow=right
+
 ## How can you do it yourself 
-You can simply install pipx and run this command 
-pipx install "git+https://github.com/TyrannoJ/manim#subdirectory=python_project" .
-Then you can run render-picture for an image and render-animation for a video.
-To Input your function you just type it in this style *coefficient*x*power*+*next-coefficien*x*next-power*...
+
+- You can simply install pipx and run this command: pipx install "git+https://github.com/TyrannoJ/manim#subdirectory=python_project" 
+- Then you can run render-picture for an image and render-animation for a video.
+- to Input your function you just type it in the command prompt 
+- Input style for functions: *coefficient*x*power*+*next-coefficien*x*next-power*...
+- **A few examples:**
+1. 2x3 
+2. x3-4x2
+3. 4.3x4+x
+4. -2.5x6-x2+3
 
 ## How did I build it
-I used *manim* to animate and *sympy* for the zero points. I used perplexity and a little GitHub Copilot for research especially for specific manim functions and to write a few little functionalities with syntaxes I didn't know but never more than 2-3 lines and a lot of help on the package structure. I also used it to understand the errors that were output.
+I used *manim* to animate and *sympy* for the zero points, so a big thanks to Grant SAnderson from 3blue1brown. I used perplexity and a little GitHub Copilot for research especially for specific manim functions and to write a few little functionalities with syntaxes I didn't know but never more than 2-3 lines and a lot of help on the package structure. I also used it to understand the errors that were output.
 This is my first manim project and I'm quite happy with how it turned out and I plan to do more.
 
 
@@ -39,8 +57,6 @@ This is my first manim project and I'm quite happy with how it turned out and I 
 ## to Do (for future reference)
 - maybe make interactive
 - make input more user friendly
-- accept \- signs for separation
-- accept x0 and x1 156m78
 - make handle of constants better
-- better coeficients
+
 
