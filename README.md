@@ -38,7 +38,7 @@ The only difference between the two is, that the simple version only shows all t
 
 ## How can you do it yourself 
 
-- for it to work you have to install a latex engine, for example MiKteX from [here](https://miktex.org/download)
+
 - You can simply install pipx and run this command: pipx install "git+https://github.com/TyrannoJ/manim#subdirectory=python_project" 
 - Then you can run render-picture for an image and render-animation for a video.
 - to Input your function you just type it in the command prompt 

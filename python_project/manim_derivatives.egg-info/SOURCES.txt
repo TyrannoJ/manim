@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+manim_derivatives/__init__.py
+manim_derivatives/derivatives_simple.py
+manim_derivatives/useful_derivatives.py
+manim_derivatives.egg-info/PKG-INFO
+manim_derivatives.egg-info/SOURCES.txt
+manim_derivatives.egg-info/dependency_links.txt
+manim_derivatives.egg-info/entry_points.txt
+manim_derivatives.egg-info/requires.txt
+manim_derivatives.egg-info/top_level.txt
