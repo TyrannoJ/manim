@@ -10,9 +10,15 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "manim",
-    "sympy"
+    "sympy",
+    "typst"
 ]
 
 [project.scripts]
 render-animation="manim_derivatives.__init__:render_animation"
 render-picture="manim_derivatives.__init__:render_picture"
+
+[project.optional-dependencies]
+typst = [
+    "manim[typst]"
+]

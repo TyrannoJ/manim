@@ -144,7 +144,7 @@ class Derivatives(Scene):
         colors=color_gradient([BLUE,GREEN,RED],3)
         texts=[]
         zeros=VGroup()
-        ze=Tex("Zeros").scale(0.7).to_corner(DL).shift(2.5*UP)
+        ze=Typst("Zeros").scale(0.7).to_corner(DL).shift(2.5*UP)
         zeros.add(ze)
         self.add(ze)
         hiding_rects=VGroup(
@@ -190,7 +190,7 @@ class Derivatives(Scene):
             for r in ranges:
                 cur.append(ax.plot(lambda x:self.final_function(x,coefficients,powers),color=colors[i],x_range=(r[0],r[1])).set_stroke(opacity=op).set_z_index(-2))
             final_ranges.append(ranges)
-            tec:MathTex
+            tec:MathTypst
             curves.append(cur)
             #write function
             if i==0:
@@ -211,15 +211,15 @@ class Derivatives(Scene):
                 elif co[1]<0:
                     text=text
                 else:
-                    text=text+rf"{co[0]}*x^{{{co[1]}}}"
+                    text=text+rf"{co[0]}*x^{co[1]}"
             if i==0:
-                tec=MathTex(text,color=colors[i]).scale(0.5).to_corner(UL)
+                tec=MathTypst(text,color=colors[i]).scale(0.5).to_corner(UL)
                 texts.append(tec.copy())
             elif i==1:
-                tec=MathTex(text,color=colors[i]).scale(0.5).to_corner(UL).shift(0.5*DOWN)
+                tec=MathTypst(text,color=colors[i]).scale(0.5).to_corner(UL).shift(0.5*DOWN)
                 texts.append(tec.copy())
             elif i==2:
-                tec=MathTex(text,color=colors[i]).scale(0.5).to_corner(UL).shift(DOWN)
+                tec=MathTypst(text,color=colors[i]).scale(0.5).to_corner(UL).shift(DOWN)
                 
                 texts.append(tec.copy())
             
@@ -246,7 +246,7 @@ class Derivatives(Scene):
                 
                 for s in solutions:
                     so=s.evalf(3)
-                    ze=Tex(str(so),color=colors[i]).scale(0.5).to_corner(DL).shift(RIGHT*(len(current_zeros)))
+                    ze=Typst(str(so),color=colors[i]).scale(0.5).to_corner(DL).shift(RIGHT*(len(current_zeros)))
                     zeros.add(ze)
                     current_zeros.append(ze)
                 
@@ -285,7 +285,7 @@ class Derivatives(Scene):
             
             
         #Extreme Points
-        title=Tex("Extreme Points").scale(0.7).to_corner(UR)
+        title=Typst("Extreme Points").scale(0.7).to_corner(UR)
 
         
         
@@ -294,7 +294,7 @@ class Derivatives(Scene):
             *[Dot(ax.c2p(ex[0], ex[1]), color=colors[1]) for ex in extreme_points]
         )
         extreme_labels=VGroup(
-            *[MathTex(rf"{ex[2]} ({ex[0]} ,{ex[1]})",color=colors[1]).scale(0.5).to_corner(UR).shift(DOWN*(i/2+0.5)) for i,ex in enumerate(extreme_points)]
+            *[MathTypst(rf"{ex[2]} ({ex[0]} ,{ex[1]})",color=colors[1]).scale(0.5).to_corner(UR).shift(DOWN*(i/2+0.5)) for i,ex in enumerate(extreme_points)]
         )
         hiding_rects[2].stretch_to_fit_height(len(extreme_labels)*0.5+0.5)
         hiding_rects[2].stretch_to_fit_width(extreme_labels.get_width())
@@ -303,7 +303,7 @@ class Derivatives(Scene):
         
         
         
-        tu=Tex("Turning Points").scale(0.7).to_corner(DR).shift(2.5*UP)
+        tu=Typst("Turning Points").scale(0.7).to_corner(DR).shift(2.5*UP)
         
         #Turning Points
         
@@ -312,7 +312,7 @@ class Derivatives(Scene):
             *[Dot(ax.c2p(tu[0], tu[1]), color=colors[2]) for tu in turning_points]
         )
         turning_labels=VGroup(
-            *[MathTex(rf"{tu[2]} ({tu[0]} ,{tu[1]})",color=colors[2],tex_to_color_map={"R":YELLOW,"L":PURPLE}).scale(0.5).to_corner(DR).shift(UP*(2-(i/2))) for i,tu in enumerate(turning_points)]
+            *[Text(rf"{tu[2]} ({tu[0]} ,{tu[1]})",color=colors[2],t2c={"R":YELLOW,"L":PURPLE}).scale(0.35).to_corner(DR).shift(UP*(2-(i/2))) for i,tu in enumerate(turning_points)]
         )
         hiding_rects[3].stretch_to_fit_height(len(turning_labels)*0.5+0.5)
         hiding_rects[3].stretch_to_fit_width(turning_labels.get_width())

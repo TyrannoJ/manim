@@ -59,5 +59,8 @@ This is my first manim project and I'm quite happy with how it turned out and I 
 - maybe make interactive
 - make input more user friendly
 - make handle of constants better
+- typst color work
+- test typst install
+- typst in animation
 
 
