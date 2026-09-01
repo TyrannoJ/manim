@@ -22,7 +22,7 @@ The only difference between the two is, that the simple version only shows all t
 - blue line: main function 
 - blue dots: zeros of the main function 
 - green line: the first derivative function 
-- green dots: extremes of the main function
+- green dots: extremes of the main function (TIP=local minimum,HOP=local maxiumum,TEP=middle points with zero slope)
 - red line: second derivative function 
 - red dots: turning points of the main function
 - purple is where the main function is curved to the left
@@ -33,8 +33,8 @@ The only difference between the two is, that the simple version only shows all t
 - First it animates the main function and it's zeros in blue
 - then the first derivative function and it's zeros in green
 - then the second derivative function and it's zeros in red
-- Afterwards it shows you the extremes in Blue
-- And then the turns in Blue and the curvature of the function purple=left yellow=right
+- Afterwards it shows you the extremes in Blue (TIP=local minimum,HOP=local maxiumum,TEP=middle points with zero slope)
+- And then the turns in Blue and the curvature of the function purple=left yellow=right and the turning points
 
 ## How can you do it yourself 
 
