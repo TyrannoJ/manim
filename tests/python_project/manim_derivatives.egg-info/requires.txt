@@ -1,0 +1,6 @@
+manim
+sympy
+typst
+
+[typst]
+manim[typst]

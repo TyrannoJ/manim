@@ -62,5 +62,6 @@ This is my first manim project and I'm quite happy with how it turned out and I 
 - typst color work
 - test typst install
 - typst in animation
+- pyinstaller --onefile --add-data "C:\Users\juliu\Desktop\manim\.venv\Lib\site-packages\manim\_config\default.cfg;manim\_config"  useful_derivatives.py
 
 

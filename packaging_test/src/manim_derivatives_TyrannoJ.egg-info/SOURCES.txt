@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+src/manim_derivatives_TyrannoJ/__init__.py
+src/manim_derivatives_TyrannoJ/derivatives_simple.py
+src/manim_derivatives_TyrannoJ/useful_derivatives.py
+src/manim_derivatives_TyrannoJ.egg-info/PKG-INFO
+src/manim_derivatives_TyrannoJ.egg-info/SOURCES.txt
+src/manim_derivatives_TyrannoJ.egg-info/dependency_links.txt
+src/manim_derivatives_TyrannoJ.egg-info/entry_points.txt
+src/manim_derivatives_TyrannoJ.egg-info/requires.txt
+src/manim_derivatives_TyrannoJ.egg-info/top_level.txt
