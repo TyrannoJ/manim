@@ -109,7 +109,7 @@ class Derivatives(Scene):
         x_val=1.5*max(highest_x_value,abs(lowest_x_value))
         y_val=2*max(highest_y_value,abs(lowest_y_value))
         
-        print(y_val)
+        
         if 0>x_val>-1:
             x_val=-1
         elif 1>x_val>0:
@@ -118,7 +118,7 @@ class Derivatives(Scene):
             y_val=-1
         elif 1>y_val>0:
             y_val=1
-        print(y_val)
+        
         x_val=round(x_val)
         y_val=round(y_val)
         if x_val==0:
@@ -132,7 +132,6 @@ class Derivatives(Scene):
         if y_step==0:
             y_step=1
         
-        print(y_val)
         ax=Axes(
             (-x_val,x_val,x_step),
             (-y_val,y_val,y_step),
