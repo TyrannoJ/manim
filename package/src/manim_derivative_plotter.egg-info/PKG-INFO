@@ -1,3 +1,22 @@
+Metadata-Version: 2.4
+Name: manim-derivative-plotter
+Version: 1.0.5
+Summary: a simple tool for plotting polynomial derivatives with manim
+Author-email: TyrannoJ <julius.megerle@outlook.de>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/TyrannoJ/manim
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: manim
+Requires-Dist: sympy
+Requires-Dist: typst
+Provides-Extra: typst
+Requires-Dist: manim[typst]; extra == "typst"
+Dynamic: license-file
+
 # This is a Python Derivative plotter made with manim
 
 ## What does it do?
@@ -66,6 +85,7 @@ This is my first manim project and I'm quite happy with how it turned out and I 
 - typst color work
 - test typst install
 - typst in animation
-- pyinstaller --onefile --add-data "C:\Users\juliu\Desktop\manim\.venv\Lib\site-packages\manim\_config\default.cfg;manim\_config"  useful_derivatives.py
+
+
 
 
