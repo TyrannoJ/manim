@@ -135,12 +135,14 @@ class Derivatives(Scene):
             x_axis_config={
                 "include_numbers": True,
                 "include_tip": False,
+                "label_constructor": MathTypst,
                 
                 
             },
             y_axis_config={
                 "include_numbers": True,
                 "include_tip": False,
+                "label_constructor": MathTypst,
                 
             },
                 ).set_z_index(-3)

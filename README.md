@@ -38,6 +38,40 @@ The only difference between the two is, that the simple version only shows all t
 
 ## How can you do it yourself 
 
+### install ffmpeg
+- as this package uses manim you first have to install ffmpeg:
+#### Windows
+
+```powershell
+winget install Gyan.FFmpeg
+```
+
+#### macOS
+
+```bash
+brew install ffmpeg
+```
+
+#### Ubuntu / Debian
+
+```bash
+sudo apt update
+sudo apt install ffmpeg
+```
+
+#### Fedora
+
+```bash
+sudo dnf install ffmpeg
+```
+
+Then open a new terminal and confirm:
+
+```bash
+ffmpeg -version
+```
+### install and run package
+
 
 - You can simply run 
 ```pip install manim-derivative-plotter ```
