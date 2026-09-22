@@ -37,6 +37,7 @@ The only difference between the two is, that the simple version only shows all t
 - And then the turns in Blue and the curvature of the function purple=left yellow=right and the turning points
 
 ## How can you do it yourself 
+Note: I could only test this on windows so i dont't know if it'll work on any other os, but I had perplexity give me the ffmpeg installs for the others and i hope it works there too
 
 ### install ffmpeg
 - as this package uses manim you first have to install ffmpeg:

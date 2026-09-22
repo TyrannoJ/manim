@@ -37,6 +37,7 @@ The only difference between the two is, that the simple version only shows all t
 - And then the turns in Blue and the curvature of the function purple=left yellow=right and the turning points
 
 ## How can you do it yourself 
+Note: I could only test this on windows so i dont't know if it'll work on any other os, but I had perplexity give me the ffmpeg installs for the others and i hope it works there too
 
 ### install ffmpeg
 - as this package uses manim you first have to install ffmpeg:
@@ -85,6 +86,7 @@ ffmpeg -version
 2. x3-4x2
 3. 4.3x4+x
 4. -2.5x6-x2+3
+
 
 ## How did I build it
 I used *manim* to animate and *sympy* for the zero points, so a big thanks to Grant SAnderson from 3blue1brown. I used perplexity and a little GitHub Copilot for research especially for specific manim functions and to write a few little functionalities with syntaxes I didn't know but never more than 2-3 lines and a lot of help on the package structure. I also used it to understand the errors that were output.
