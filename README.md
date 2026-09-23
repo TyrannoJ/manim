@@ -96,14 +96,11 @@ This is my first manim project and I'm quite happy with how it turned out and I 
 
 ## to Do (for future reference)
 - maybe make interactive
-- make input more user friendly
-- make handle of constants better
-- typst color work
-- test typst install
-- typst in animation
 - pyinstaller --onefile --add-data "C:\Users\juliu\Desktop\manim\.venv\Lib\site-packages\manim\_config\default.cfg;manim\_config"  useful_derivatives.py
+- for anyone wondering about other python scripts about other topixs, I#m planning to turn this into a broader project with more manim content
 
 
 ## Remember
 -Build: python -m build   
 -Upload: python -m twine upload dist/* --verbose
+
