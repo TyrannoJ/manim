@@ -9,12 +9,16 @@ from pathlib import Path
 
 #uvicorn main:app --reload
 app = FastAPI()
+# Allow your Vercel frontend to call this API
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["GET","POST"],
+    allow_origins=[
+        "http://localhost:3000",
+        "https://derivatives-app.vercel.app",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
     allow_headers=["*"],
-    allow_credentials=False
 )
 users = [
     {"id": 1, "name": "Alice"},
