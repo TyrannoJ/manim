@@ -3,14 +3,18 @@ from fastapi.middleware.cors import CORSMiddleware
 import base64
 import mimetypes
 from fastapi.responses import FileResponse
-from pydantic import BaseModel
+import subprocess
+import sys
+from pathlib import Path
+
 #uvicorn main:app --reload
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=["*"],
     allow_methods=["GET","POST"],
     allow_headers=["*"],
+    allow_credentials=False
 )
 users = [
     {"id": 1, "name": "Alice"},
@@ -25,7 +29,8 @@ def read_root():
 @app.get("/video/{filename}")
 async def get_video(filename: str):
     # Adjust path to your video folder
-    path = f"{filename}"
+    path = f"C:/Users/juliu/Desktop/manim/backend/video/{filename}/images/derivatives_simple/Derivatives_ManimCE_v0.21.0.png"
+    
     mime_type, _ = mimetypes.guess_type(path)
     return FileResponse(
         path,
@@ -40,4 +45,22 @@ async def receive_text(data: dict):
     
     user_text = data.get("text")
     print(user_text)
+    render_picture(user_text)
     return {"received": user_text, "length": len(user_text)}
+
+
+def render_picture(text):
+    subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "manim",
+           "--media_dir","./video/"+str(text) ,
+            "-qh",
+            str("derivatives_simple.py"),
+            "Derivatives",
+        ],
+        input=f"{text}\n",
+        text=True,
+        check=True,
+    )
