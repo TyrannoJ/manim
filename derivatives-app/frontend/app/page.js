@@ -1,9 +1,9 @@
 "use client";
  
 import { useEffect, useState } from "react";
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export default function Home() {
-  
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     
     const [text, setText] = useState("");
@@ -35,7 +35,7 @@ export default function Home() {
   const interval = setInterval(async () => {
     
     try{
-    const res = await fetch(`https://manim-pkhw.onrender.com/`, {
+    const res = await fetch("http://localhost:8000/", {
       method: "GET",
       
     });
@@ -75,7 +75,7 @@ export default function Home() {
           </form>
           <p>{result}</p>
           {received &&(
-            <img src={`${API_URL}/video/${text}`}/>
+            <img src={`http://192.168.178.48:8000/video/${text}`}/>
           //<video controls width={640}>
             
             //<source src={`http://localhost:8000/video/${text}`} type="video/mp4" />
