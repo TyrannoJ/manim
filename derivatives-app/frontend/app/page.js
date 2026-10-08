@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 
 export default function Home() {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+    
     const [text, setText] = useState("");
     const [result,setResult] =useState("Hallo");
     const [received,setReceived]=useState(false);
@@ -14,7 +17,7 @@ export default function Home() {
     {
     e.preventDefault();
     setReceived(false);
-    const res = await fetch("http://192.168.178.48:8000/send-text", {
+    const res = await fetch(`${API_URL}/send-text`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +35,7 @@ export default function Home() {
   const interval = setInterval(async () => {
     
     try{
-    const res = await fetch("http://localhost:8000/", {
+    const res = await fetch(`${API_URL}/`, {
       method: "GET",
       
     });
@@ -72,7 +75,7 @@ export default function Home() {
           </form>
           <p>{result}</p>
           {received &&(
-            <img src={`http://192.168.178.48:8000/video/${text}`}/>
+            <img src={`${API_URL}/video/${text}`}/>
           //<video controls width={640}>
             
             //<source src={`http://localhost:8000/video/${text}`} type="video/mp4" />
