@@ -65,6 +65,7 @@ export default function Home() {
             
           <h1>Video from FastAPI</h1>
           <p>{connected}</p>
+          <p>{API_URL}</p>
           <form onSubmit={handleSubmit}>
             <input
               value={text}
