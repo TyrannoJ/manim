@@ -33,9 +33,9 @@ export default function Home() {
 
   useEffect(() => {
   const interval = setInterval(async () => {
-    console.log("API_URL is:", process.env.NEXT_PUBLIC_API_URL);
+    
     try{
-    const res = await fetch(`${API_URL}/`, {
+    const res = await fetch(`${API_URL}`, {
       method: "GET",
       
     });
@@ -66,6 +66,7 @@ export default function Home() {
           <h1>Video from FastAPI</h1>
           <p>{connected}</p>
           <p>{API_URL}</p>
+          <p>{`${API_URL}/`}</p>
           <form onSubmit={handleSubmit}>
             <input
               value={text}
