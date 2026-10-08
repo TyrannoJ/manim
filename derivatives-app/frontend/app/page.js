@@ -35,7 +35,7 @@ export default function Home() {
   const interval = setInterval(async () => {
     
     try{
-    const res = await fetch(`${API_URL}/`, {
+    const res = await fetch(`https://manim-pkhw.onrender.com/`, {
       method: "GET",
       
     });
