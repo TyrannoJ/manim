@@ -33,9 +33,9 @@ export default function Home() {
 
   useEffect(() => {
   const interval = setInterval(async () => {
-    
+    console.log("API_URL is:", process.env.NEXT_PUBLIC_API_URL);
     try{
-    const res = await fetch("http://localhost:8000/", {
+    const res = await fetch(`${API_URL}/`, {
       method: "GET",
       
     });
