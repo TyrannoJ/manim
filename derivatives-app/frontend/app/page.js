@@ -1,9 +1,9 @@
 "use client";
  
 import { useEffect, useState } from "react";
-
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export default function Home() {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  
 
     
     const [text, setText] = useState("");
