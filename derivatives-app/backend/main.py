@@ -8,8 +8,10 @@ import sys
 from pathlib import Path
 
 #uvicorn main:app --reload
+#uvicorn main:app --host 0.0.0.0 --port 8000
 app = FastAPI()
 # Allow your Vercel frontend to call this API
+#kein slash hinten an origins
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -20,6 +22,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 users = [
     {"id": 1, "name": "Alice"},
     {"id": 2, "name": "Bob"},
@@ -33,7 +36,7 @@ def read_root():
 @app.get("/video/{filename}")
 async def get_video(filename: str):
     # Adjust path to your video folder
-    path = f"C:/Users/juliu/Desktop/manim/backend/video/{filename}/images/derivatives_simple/Derivatives_ManimCE_v0.21.0.png"
+    path = f"C:/Users/juliu/Desktop/manim/derivatives-app/backend/video/{filename}/images/derivatives_simple/Derivatives_ManimCE_v0.21.0.png"
     
     mime_type, _ = mimetypes.guess_type(path)
     return FileResponse(
