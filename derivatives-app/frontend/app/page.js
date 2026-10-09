@@ -77,7 +77,7 @@ export default function Home() {
           </form>
           <p>{result}</p>
           {received &&(
-            <img src={`${API_URL}/video/${text}`}/>
+            <img src={`${API_URL}/video/${text}`} controls width={640}/>
           //<video controls width={640}>
             
             //<source src={`http://localhost:8000/video/${text}`} type="video/mp4" />

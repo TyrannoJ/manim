@@ -9,6 +9,7 @@ from pathlib import Path
 
 #uvicorn main:app --reload
 #uvicorn main:app --host 0.0.0.0 --port 8000
+#cloudflared tunnel --url http://localhost:8000
 app = FastAPI()
 # Allow your Vercel frontend to call this API
 #kein slash hinten an origins
