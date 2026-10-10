@@ -59,13 +59,15 @@ export default function Home() {
   
   return (
     <html>
-      <head></head>
+      <head>
+        <meta charSet="UTF-8" />
+      </head>
       <body>
-        <div>
-            
+        <div >
+          <div className="container mx-auto">HI</div>
           <h1>Video from FastAPI</h1>
           <p>{connected}</p>
-          <p>{API_URL}</p>
+          
           
           <form onSubmit={handleSubmit}>
             <input
@@ -75,6 +77,7 @@ export default function Home() {
             />
             <button type="submit">Send</button>
           </form>
+          
           <p>{result}</p>
           {received &&(
             <img src={`${API_URL}/video/${text}`} controls width={640}/>
