@@ -101,6 +101,7 @@ This is my first manim project and I'm quite happy with how it turned out and I 
 - error catching at input
 - videos
 - jokes
+- put picture into own component
 
 
 ## Remember

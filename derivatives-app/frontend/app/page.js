@@ -2,6 +2,8 @@
  //https://official-joke-api.appspot.com/random_joke
 import { useEffect, useState } from "react";
 import Video from "./video";
+import Picture from "./picture";
+
 export default function Home() {
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -117,6 +119,7 @@ export default function Home() {
             )}
             
           </div>
+          <Picture connected={connected} />
           <Video connected={connected} />
         </div>
       
