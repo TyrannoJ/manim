@@ -1,7 +1,7 @@
 "use client";
  //https://official-joke-api.appspot.com/random_joke
 import { useEffect, useState } from "react";
-
+import Video from "./video";
 export default function Home() {
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -16,6 +16,12 @@ export default function Home() {
   
   async function handleSubmit(e) 
     {
+      if (connected=="connected"){
+        setResult("your request is being handled...")
+      }
+      else {
+        setResult("no connection to the backend, sorry :(")
+      }
     e.preventDefault();
     setReceived(false);
     const res = await fetch(`${API_URL}/send-text`, {
@@ -25,12 +31,7 @@ export default function Home() {
       },
       body: JSON.stringify({ text }),
     });
-    if (connected=="connected"){
-      setResult("your request is being handled...")
-    }
-    else {
-      setResult("no connection to the backend, sorry :(")
-    }
+    
     
     const data = await res.json();
     setResult("finished picture");
@@ -40,8 +41,10 @@ export default function Home() {
   async function textChange(e) {
     setText(e.target.value);
     setReceived(false);
+    setResult("Put in a function")
     
   }
+
   useEffect(() => {
   const interval = setInterval(async () => {
     
@@ -103,7 +106,7 @@ export default function Home() {
             
             
             {received &&(
-            <img src={`${API_URL}/video/${text}`} alt="currently no picture" className=" aspect-video rounded-2xl outline-3 outline-cyan-800 mx-auto"/>
+            <img src={`${API_URL}/picture/${text}`} alt="currently no picture" className=" aspect-video rounded-2xl outline-3 outline-cyan-800 mx-auto"/>
             
             //<video controls width={640}>
               
@@ -112,7 +115,9 @@ export default function Home() {
               //<img src="dings.png"  className=" aspect-video rounded-2xl outline-3 outline-cyan-800 mx-auto"/> 
             //</video>
             )}
+            
           </div>
+          <Video/>
         </div>
       
     
