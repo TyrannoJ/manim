@@ -1,6 +1,6 @@
 from manim import *
 import sympy as sp
-
+#- pyinstaller --onefile --add-data "C:\Users\juliu\Desktop\manim\.venv\Lib\site-packages\manim\_config\default.cfg;manim\_config"  useful_derivatives.py
 #Global variables
 final_coefficients=[]
 final_powers=[]

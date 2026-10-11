@@ -96,7 +96,6 @@ This is my first manim project and I'm quite happy with how it turned out and I 
 
 ## to Do (for future reference)
 - maybe make interactive
-- pyinstaller --onefile --add-data "C:\Users\juliu\Desktop\manim\.venv\Lib\site-packages\manim\_config\default.cfg;manim\_config"  useful_derivatives.py
 - for anyone wondering about other python scripts about other topixs, I#m planning to turn this into a broader project with more manim content
 - error catching at input
 - videos
