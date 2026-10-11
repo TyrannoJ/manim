@@ -37,7 +37,11 @@ export default function Home() {
     setReceived(true);
   }
   
-
+  async function textChange(e) {
+    setText(e.target.value);
+    setReceived(false);
+    
+  }
   useEffect(() => {
   const interval = setInterval(async () => {
     
@@ -83,7 +87,8 @@ export default function Home() {
               <input 
                 className=" bg-gray-950 text-cyan-800  placeholder-cyan-950 text-xl mr-3 outline-1 outline-cyan-800 w-1/2 md:w-1/4 hover:outline-2 focus:outline-cyan-700 focus:text-cyan-700 focus:outline-2"
                 value={text}
-                onChange={(e) => setText(e.target.value)}
+                onChange={(e) => textChange(e)}
+                
                 placeholder="Put in your function"
               />
             <button 
