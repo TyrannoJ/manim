@@ -2,7 +2,7 @@
  //https://official-joke-api.appspot.com/random_joke
 import { useEffect, useState } from "react";
 
-export default function HandleVideo() {
+export default function HandleVideo({connected}) {
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     
@@ -13,14 +13,18 @@ export default function HandleVideo() {
  
   
   async function handleSubmit(e) 
+    
     {
-      if (connected=="connected"){
+    e.preventDefault(); //to prohibit hard reload
+      
+    if (connected=="connected"){
         setResult("your request is being handled...")
       }
       else {
         setResult("no connection to the backend, sorry :(")
       }
-    e.preventDefault();
+      
+    
     setReceived(false);
     const res = await fetch(`${API_URL}/send-text-video`, {
       method: "POST",
