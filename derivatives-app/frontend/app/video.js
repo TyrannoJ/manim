@@ -80,10 +80,12 @@ export default function HandleVideo({connected}) {
             <p className="text-xl text-cyan-800 mb-2 mt-2">{result}</p>
             
             
-            {received &&(
+
+            {//{`${API_URL}/video/${text}`}
+            received &&(
                
                 
-                <video  className=" aspect-video rounded-2xl outline-3 outline-cyan-800 mx-auto">
+                <video  controls className=" aspect-video rounded-2xl outline-3 outline-cyan-800 mx-auto">
                 
                     <source src={`${API_URL}/video/${text}`} type="video/mp4" />
                     Your browser does not support the video tag.
