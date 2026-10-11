@@ -85,7 +85,7 @@ export default function HandleVideo({connected}) {
                 
                 <video controls width={640}>
                 
-                    <source src={`http://${API_URL}/video/${text}`} type="video/mp4" />
+                    <source src={`${API_URL}/video/${text}`} type="video/mp4" />
                     Your browser does not support the video tag.
                     <img src="dings.png"  className=" aspect-video rounded-2xl outline-3 outline-cyan-800 mx-auto"/> 
                 </video>
