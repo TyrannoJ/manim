@@ -83,7 +83,7 @@ export default function HandleVideo({connected}) {
             {received &&(
                
                 
-                <video controls width={640}>
+                <video  className=" aspect-video rounded-2xl outline-3 outline-cyan-800 mx-auto">
                 
                     <source src={`${API_URL}/video/${text}`} type="video/mp4" />
                     Your browser does not support the video tag.
