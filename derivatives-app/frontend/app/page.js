@@ -117,7 +117,7 @@ export default function Home() {
             )}
             
           </div>
-          <Video connected={connected === "connected"} />
+          <Video connected={connected} />
         </div>
       
     
