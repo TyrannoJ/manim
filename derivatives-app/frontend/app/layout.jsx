@@ -1,8 +1,8 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "My Website",
-  description: "My Next.js website",
+  title: "Manim Derivatives",
+  description: "interactive Manim derivative plotter",
 };
 
 export default function RootLayout({ children }) {

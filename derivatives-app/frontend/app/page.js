@@ -6,6 +6,7 @@ import Video from "./video";
 import Picture from "./picture";
 import Jokes from "./jokes";
 
+
 export default function Home() {
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
 

@@ -1,5 +1,9 @@
 # This is a Python Derivative plotter made with manim
 
+### Go to the website
+
+Go [here](https://manim-ochre.vercel.app/) and put in the functions, nut be warned the video can take like a minute or two to render and I'm still testing so something could go wrong, you'll find instructions on what to input farther below 
+
 ## What does it do?
 
 There are two main codes here.
@@ -36,7 +40,8 @@ The only difference between the two is, that the simple version only shows all t
 - Afterwards it shows you the extremes in Blue (TIP=local minimum,HOP=local maxiumum,TEP=middle points with zero slope)
 - And then the turns in Blue and the curvature of the function purple=left yellow=right and the turning points
 
-## How can you do it yourself 
+## How can you do it yourself
+
 Note: I could only test this on windows so i dont't know if it'll work on any other os, but I had perplexity give me the ffmpeg installs for the others and i hope it works there too
 
 ### install ffmpeg
@@ -89,8 +94,10 @@ ffmpeg -version
 4. -2.5x6-x2+3
 
 ## How did I build it
-I used *manim* to animate and *sympy* for the zero points, so a big thanks to Grant SAnderson from 3blue1brown. I used perplexity and a little GitHub Copilot for research especially for specific manim functions and to write a few little functionalities with syntaxes I didn't know but never more than 2-3 lines and a lot of help on the package structure. I also used it to understand the errors that were output.
+I used *manim* to animate and *sympy* for the zero points, so a big thanks to Grant Sanderson from 3blue1brown. I used perplexity and a little GitHub Copilot for research especially for specific manim functions and to write a few little functionalities with syntaxes I didn't know but never more than 2-3 lines and a lot of help on the package structure. I also used it to understand the errors that were output.
 This is my first manim project and I'm quite happy with how it turned out and I plan to do more.
+
+I built the website with next.js hosted on vercel and fastapi and uvicorn hosted on my Ubuntu laptop, for styling I used TailwindCSS, also thanks to [this project](https://github.com/saishreyansh28-ux/Slack-Bot-Stardance) for showing me the joke api
 
 
 
@@ -98,9 +105,8 @@ This is my first manim project and I'm quite happy with how it turned out and I 
 - maybe make interactive
 - for anyone wondering about other python scripts about other topixs, I#m planning to turn this into a broader project with more manim content
 - error catching at input
-- videos
-- jokes
-- put picture into own component
+- fix rendering errors
+- commit vernünftig von linux laptop
 
 
 ## Remember
