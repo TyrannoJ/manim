@@ -107,7 +107,9 @@ I built the website with next.js hosted on vercel and fastapi and uvicorn hosted
 - error catching at input
 - fix rendering errors
 - commit vernünftig von linux laptop
-
+- add instructions
+- just let the uswers get the values
+- show users video is rendering 
 
 ## Remember
 -Build: python -m build   
