@@ -1,8 +1,8 @@
 # This is a Python Derivative plotter made with manim
 
-### Go to the website
+## Go to the website
 
-Go [here](https://manim-ochre.vercel.app/) and put in the functions, nut be warned the video can take like a minute or two to render and I'm still testing so something could go wrong, you'll find instructions on what to input farther below 
+Go [here](https://manim-ochre.vercel.app/) and put in the functions, but be warned the video can take like a minute or two to render and I'm still testing so something could go wrong, you'll find instructions on what to input farther below 
 
 ## What does it do?
 
@@ -97,19 +97,20 @@ ffmpeg -version
 I used *manim* to animate and *sympy* for the zero points, so a big thanks to Grant Sanderson from 3blue1brown. I used perplexity and a little GitHub Copilot for research especially for specific manim functions and to write a few little functionalities with syntaxes I didn't know but never more than 2-3 lines and a lot of help on the package structure. I also used it to understand the errors that were output.
 This is my first manim project and I'm quite happy with how it turned out and I plan to do more.
 
-I built the website with next.js hosted on vercel and fastapi and uvicorn hosted on my Ubuntu laptop, for styling I used TailwindCSS, also thanks to [this project](https://github.com/saishreyansh28-ux/Slack-Bot-Stardance) for showing me the joke api
+I built the website with next.js hosted on vercel and fastapi and uvicorn hosted on my Ubuntu laptop, for styling I used TailwindCSS, also thanks to [this project](https://github.com/saishreyansh28-ux/Slack-Bot-Stardance) for showing me the joke api.
 
 
 
 ## to Do (for future reference)
 - maybe make interactive
-- for anyone wondering about other python scripts about other topixs, I#m planning to turn this into a broader project with more manim content
+- for anyone wondering about other python scripts about other topixs, I'm planning to turn this into a broader project with more manim content
 - error catching at input
 - fix rendering errors
 - commit vernünftig von linux laptop
 - add instructions
 - just let the uswers get the values
 - show users video is rendering 
+- only one input field
 
 ## Remember
 -Build: python -m build   

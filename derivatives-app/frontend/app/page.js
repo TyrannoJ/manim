@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Video from "./video";
 import Picture from "./picture";
 import Jokes from "./jokes";
-
+import Help from "./help";
 
 export default function Home() {
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -60,6 +60,7 @@ export default function Home() {
           <Picture connected={connected} />
           <Video connected={connected} />
           <Jokes />
+          <Help />
         </div>
       
     

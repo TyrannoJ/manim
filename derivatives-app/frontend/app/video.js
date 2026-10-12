@@ -7,7 +7,7 @@ export default function HandleVideo({connected}) {
 
     
     const [text, setText] = useState("");
-    const [result,setResult] =useState("Put in a function");
+    const [result,setResult] =useState("Put in a function (rendering could take up to two minutes)");
     const [received,setReceived]=useState(false);
     
  
@@ -43,7 +43,7 @@ export default function HandleVideo({connected}) {
   async function textChange(e) {
     setText(e.target.value);
     setReceived(false);
-    setResult("Put in a function")
+    setResult("Put in a function (rendering could take up to two minutes)")
     
   }
 
