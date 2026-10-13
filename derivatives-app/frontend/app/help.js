@@ -41,6 +41,8 @@ export default function Home() {
                         <li>2. x3-4x2</li>
                         <li>3. 4.3x4+x</li>
                         <li>4. -2.5x6-x2+3</li>
+                        <li className="font-bold">don't understand an output: </li>
+                        <li><a href="https://github.com/TyrannoJ/manim" className="text-purple-800 underline hover:text-purple-700 active:text-purple-600">click to look at README</a></li>
                     </ul>
                 </div>
             )

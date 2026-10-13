@@ -2,7 +2,7 @@
 
 ## Go to the website
 
-Go [here](https://manim-ochre.vercel.app/) and put in the functions, but be warned the video can take like a minute or two to render and I'm still testing so something could go wrong, you'll find instructions on what to input farther below 
+Go [here](https://manim-ochre.vercel.app/) and put in the functions, but be warned the video can take like a minute or two to render and I'm still testing so something could go wrong, you'll find instructions on what to input and what it means farther below. Or press the need help button for instructions
 
 ## What does it do?
 
@@ -99,6 +99,8 @@ This is my first manim project and I'm quite happy with how it turned out and I 
 
 I built the website with next.js hosted on vercel and fastapi and uvicorn hosted on my Ubuntu laptop, for styling I used TailwindCSS, also thanks to [this project](https://github.com/saishreyansh28-ux/Slack-Bot-Stardance) for showing me the joke api.
 
+The backend code on the laptop lies in another [repository](https://github.com/TyrannoJ/manim-backend)
+
 
 
 ## to Do (for future reference)
@@ -106,9 +108,7 @@ I built the website with next.js hosted on vercel and fastapi and uvicorn hosted
 - for anyone wondering about other python scripts about other topixs, I'm planning to turn this into a broader project with more manim content
 - error catching at input
 - fix rendering errors
-- commit vernünftig von linux laptop
-- add instructions
-- just let the uswers get the values
+- just let the users get the values
 - show users video is rendering 
 - only one input field
 
