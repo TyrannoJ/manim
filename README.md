@@ -111,6 +111,9 @@ The backend code on the laptop lies in another [repository](https://github.com/T
 - just let the users get the values
 - show users video is rendering 
 - only one input field
+- scan through files before rendering new
+- better termination if sth went wrong
+- half points when on same place
 
 ## Remember
 -Build: python -m build   

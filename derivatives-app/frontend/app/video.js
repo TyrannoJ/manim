@@ -67,7 +67,7 @@ export default function HandleVideo({connected}) {
                 value={text}
                 onChange={(e) => textChange(e)}
                 
-                placeholder="Put in your function"
+                placeholder="ex: 2x2+4x"
               />
             <button 
                 type="submit" 

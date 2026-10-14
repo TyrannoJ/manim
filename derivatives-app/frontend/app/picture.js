@@ -7,7 +7,7 @@ export default function HandlePicture({connected}) {
 
     
     const [text, setText] = useState("");
-    const [result,setResult] =useState("Put in a function");
+    const [result,setResult] =useState("Put in a function (click help if you don't understand how)");
     const [received,setReceived]=useState(false);
     
     
@@ -41,7 +41,7 @@ export default function HandlePicture({connected}) {
   async function textChange(e) {
     setText(e.target.value);
     setReceived(false);
-    setResult("Put in a function")
+    setResult("Put in a function (click help if you don't understand how)")
     
   }
 
@@ -62,7 +62,7 @@ export default function HandlePicture({connected}) {
                 value={text}
                 onChange={(e) => textChange(e)}
                 
-                placeholder="Put in your function"
+                placeholder="ex: 2x2+4x"
               />
             <button 
                 type="submit" 
