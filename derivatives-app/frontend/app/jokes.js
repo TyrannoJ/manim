@@ -9,7 +9,7 @@ export default function HandleVideo() {
     const [joke,setJoke] = useState("");
     const [setup,setSetup] = useState("");
     const [punchline,setPunchline] = useState("");
-    async function get_joke() {
+    async function get_joke() { //get joke form API on button press
         
         const res = await fetch("https://official-joke-api.appspot.com/random_joke", {
             method: "GET",

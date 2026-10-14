@@ -26,7 +26,7 @@ export default function HandleVideo({connected}) {
       
     
     setReceived(false);
-    const res = await fetch(`${API_URL}/send-text-video`, {
+    const res = await fetch(`${API_URL}/send-text-video`, { //send text to backend
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +40,7 @@ export default function HandleVideo({connected}) {
     setReceived(true);
   }
   
-  async function textChange(e) {
+  async function textChange(e) { //change text on typing
     setText(e.target.value);
     setReceived(false);
     setResult("Put in a function (rendering could take up to two minutes)")
@@ -87,7 +87,7 @@ export default function HandleVideo({connected}) {
                 
                 <video  controls className=" aspect-video rounded-2xl outline-3 outline-cyan-800 mx-auto">
                 
-                    <source src={`${API_URL}/video/${text}`} type="video/mp4" />
+                    <source src={`${API_URL}/video/${text}`} type="video/mp4" /> 
                     Your browser does not support the video tag.
                     <img src="dings.png"  className=" aspect-video rounded-2xl outline-3 outline-cyan-800 mx-auto"/> 
                 </video>

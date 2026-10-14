@@ -24,7 +24,7 @@ export default function HandlePicture({connected}) {
       }
     
     setReceived(false);
-    const res = await fetch(`${API_URL}/send-text`, {
+    const res = await fetch(`${API_URL}/send-text`, { //send text to backend
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ export default function HandlePicture({connected}) {
     setReceived(true);
   }
   
-  async function textChange(e) {
+  async function textChange(e) { //change text on typing
     setText(e.target.value);
     setReceived(false);
     setResult("Put in a function (click help in the bottom right if you don't understand how)")

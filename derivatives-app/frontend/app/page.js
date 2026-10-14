@@ -18,11 +18,11 @@ export default function Home() {
   
   
 
-  useEffect(() => {
-  const interval = setInterval(async () => {
+  useEffect(() => { 
+  const interval = setInterval(async () => { //call method every second
     
     try{
-    const res = await fetch(`${API_URL}`, {
+    const res = await fetch(`${API_URL}`, { //get connection status
       method: "GET",
       
     });

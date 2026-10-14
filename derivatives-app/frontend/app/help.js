@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 
 
-export default function Home() {
+export default function Home() { 
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
     const [helpThere,setHelpThere] = useState(false);
     async function get_help() {
