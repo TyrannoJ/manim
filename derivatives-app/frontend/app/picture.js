@@ -7,7 +7,7 @@ export default function HandlePicture({connected}) {
 
     
     const [text, setText] = useState("");
-    const [result,setResult] =useState("Put in a function (click help if you don't understand how)");
+    const [result,setResult] =useState("Put in a function (click help in the bottom right if you don't understand how)");
     const [received,setReceived]=useState(false);
     
     
