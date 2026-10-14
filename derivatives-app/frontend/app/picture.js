@@ -41,7 +41,7 @@ export default function HandlePicture({connected}) {
   async function textChange(e) {
     setText(e.target.value);
     setReceived(false);
-    setResult("Put in a function (click help if you don't understand how)")
+    setResult("Put in a function (click help in the bottom right if you don't understand how)")
     
   }
 
