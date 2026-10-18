@@ -135,7 +135,7 @@ export default function HandlePicture({connected}) {
             //</video>
             )}
             
-            {!received && connected !== "connected" &&(
+            {connected == "not connected" &&(
               <div>
               <button
               className="bg-gray-950 text-cyan-800 text-xl rounded-md px-2 outline-2 outline-cyan-800 hover:outline-offset-1 hover:outline-3 hover:font-bold active:text-cyan-600 active:outline-cyan-600 mb-3"

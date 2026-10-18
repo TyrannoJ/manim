@@ -106,7 +106,6 @@ The backend code on the laptop lies in another [repository](https://github.com/T
 ## to Do (for future reference)
 - maybe make interactive
 - for anyone wondering about other python scripts about other topixs, I'm planning to turn this into a broader project with more manim content
-- error catching at input
 - fix rendering errors (no text clipping)
 - just let the users get the values
 - show users video is rendering 
@@ -115,8 +114,14 @@ The backend code on the laptop lies in another [repository](https://github.com/T
 - better termination if sth went wrong
 - half points when on same place
 - auto input fix tool
-- copy button
+- close inputs while rendering 
 - scale axes to less than one
+- fix help button position
+
+## half to do
+- copy button
+- error catching at input
+
 ## Remember
 -Build: python -m build   
 -Upload: python -m twine upload dist/* --verbose
