@@ -16,26 +16,43 @@ export default function HandlePicture({connected}) {
   async function handleSubmit(e) 
     {
         e.preventDefault();
+      
+    var correct_input=true;
+    for(let i =0;i<text.length;i++){
+      
+        
+      if (!(Number.isFinite(Number(text[i])) || text[i]=="+" || text[i]=="-" || text[i]=="x")){
+        correct_input=false;
+        break;
+      }
+        
+      
+    }
+    if (correct_input){
       if (connected=="connected"){
-        setResult("your request is being handled...")
-      }
-      else {
-        setResult("no connection to the backend, sorry :(")
-      }
+          setResult("your request is being handled...")
+        }
+        else {
+          setResult("no connection to the backend, sorry :(")
+        }
+      setReceived(false);
+      const res = await fetch(`${API_URL}/send-text`, { //send text to backend
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ text }),
+      });
+      
+      
+      const data = await res.json();
+      setResult("finished picture");
+      setReceived(true);
+    }
+  else{
+    setResult("wrong input");
+  }
     
-    setReceived(false);
-    const res = await fetch(`${API_URL}/send-text`, { //send text to backend
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ text }),
-    });
-    
-    
-    const data = await res.json();
-    setResult("finished picture");
-    setReceived(true);
   }
   
   async function textChange(e) { //change text on typing
@@ -44,7 +61,30 @@ export default function HandlePicture({connected}) {
     setResult("Put in a function (click help in the bottom right if you don't understand how)")
     
   }
+  async function copyImage(imageUrl) { //from perplexity/copilot
+    try {
+      const response = await fetch(imageUrl);
 
+      if (!response.ok) {
+        throw new Error(`Image request failed: ${response.status}`);
+      }
+
+      const blob = await response.blob();
+
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          [blob.type]: blob,
+        }),
+      ]);
+
+      setResult("Image copied");
+    } catch (error) {
+      console.error("Could not copy image:", error);
+      setResult(
+        `Copy failed: ${error instanceof Error ? error.message : "Unknown error"}`
+      );
+    }
+  }
 
   
   return (
@@ -76,8 +116,17 @@ export default function HandlePicture({connected}) {
             
             
             {received &&(
-            <img src={`${API_URL}/picture/${text}`} alt="currently no picture" className=" aspect-video rounded-2xl outline-3 outline-cyan-800 mx-auto"/>
-            
+              <div>
+              <button
+              className="bg-gray-950 text-cyan-800 text-xl rounded-md px-2 outline-2 outline-cyan-800 hover:outline-offset-1 hover:outline-3 hover:font-bold active:text-cyan-600 active:outline-cyan-600 mb-3"
+              onClick={() => copyImage(`${API_URL}/picture/${text}`)}
+              
+              >
+                copy Image
+              </button>
+              <img src="dings.png"  className=" aspect-video rounded-2xl outline-3 outline-cyan-800 mx-auto"/> 
+              <img src={`${API_URL}/picture/${text}`} alt="currently no picture" className=" aspect-video rounded-2xl outline-3 outline-cyan-800 mx-auto"/> 
+            </div>
             //<video controls width={640}>
               
               //<source src={`http://localhost:8000/video/${text}`} type="video/mp4" />
@@ -86,6 +135,20 @@ export default function HandlePicture({connected}) {
             //</video>
             )}
             
+            {!received && connected !== "connected" &&(
+              <div>
+              <button
+              className="bg-gray-950 text-cyan-800 text-xl rounded-md px-2 outline-2 outline-cyan-800 hover:outline-offset-1 hover:outline-3 hover:font-bold active:text-cyan-600 active:outline-cyan-600 mb-3"
+              
+              onClick={() => copyImage("dings.png")}
+              >
+                copy Image
+              </button>
+              <img src="dings.png"  className=" aspect-video rounded-2xl outline-3 outline-cyan-800 mx-auto"/> 
+             
+            </div>
+            )
+          }
           </div>
           
         </div>

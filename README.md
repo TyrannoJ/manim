@@ -107,14 +107,16 @@ The backend code on the laptop lies in another [repository](https://github.com/T
 - maybe make interactive
 - for anyone wondering about other python scripts about other topixs, I'm planning to turn this into a broader project with more manim content
 - error catching at input
-- fix rendering errors
+- fix rendering errors (no text clipping)
 - just let the users get the values
 - show users video is rendering 
 - only one input field
 - scan through files before rendering new
 - better termination if sth went wrong
 - half points when on same place
-
+- auto input fix tool
+- copy button
+- scale axes to less than one
 ## Remember
 -Build: python -m build   
 -Upload: python -m twine upload dist/* --verbose

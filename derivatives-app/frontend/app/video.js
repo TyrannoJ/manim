@@ -16,7 +16,18 @@ export default function HandleVideo({connected}) {
     
     {
     e.preventDefault(); //to prohibit hard reload
-      
+    var correct_input=true;
+      for(let i =0;i<text.length;i++){
+        
+          
+        if (!(Number.isFinite(Number(text[i])) || text[i]=="+" || text[i]=="-" || text[i]=="x")){
+          correct_input=false;
+          break;
+        }
+          
+        
+      }
+    if (correct_input){
     if (connected=="connected"){
         setResult("your request is being handled...")
       }
@@ -37,7 +48,10 @@ export default function HandleVideo({connected}) {
     
     const data = await res.json();
     setResult("finished video");
-    setReceived(true);
+    setReceived(true);}
+    else{
+      setResult("wrong input");
+    }
   }
   
   async function textChange(e) { //change text on typing
