@@ -27,6 +27,9 @@ export default function HandleVideo({connected}) {
           
         
       }
+      if (text.length==0){
+        correct_input=false;
+      }
     if (correct_input){
     if (connected=="connected"){
         setResult("your request is being handled...")

@@ -28,6 +28,9 @@ export default function HandlePicture({connected}) {
         
       
     }
+    if (text.length==0){
+      correct_input=false;
+    }
     if (correct_input){
       if (connected=="connected"){
           setResult("your request is being handled...")
@@ -124,7 +127,7 @@ export default function HandlePicture({connected}) {
               >
                 copy Image
               </button>
-              <img src="dings.png"  className=" aspect-video rounded-2xl outline-3 outline-cyan-800 mx-auto"/> 
+             
               <img src={`${API_URL}/picture/${text}`} alt="currently no picture" className=" aspect-video rounded-2xl outline-3 outline-cyan-800 mx-auto"/> 
             </div>
             //<video controls width={640}>
